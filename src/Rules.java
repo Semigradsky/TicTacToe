@@ -15,12 +15,19 @@ public class Rules {
         public static final int Max = 3;
     }
 
-    public int countHumans = 0;
-    public int countRobots = 0;
-    public int countPlayers = 2;
-    public int fieldWidth = 3;
-    public int fieldHeight = 3;
-    public int countMoves = 1;
+    private int countHumans = 0;
+    private int countRobots = 0;
+    private int countPlayers = 2;
+    private int fieldWidth = 3;
+    private int fieldHeight = 3;
+    private int countMoves = 1;
+
+    public int getCountHumans() { return  countHumans; }
+    public int getCountRobots() { return  countRobots; }
+    public int getCountPlayers() { return countPlayers; }
+    public int getFieldWidth() { return  fieldWidth; }
+    public int getFieldHeight() { return fieldHeight; }
+    public int getCountMoves() { return countMoves; }
 
     public static Rules askRules() {
         Rules rules = new Rules();
