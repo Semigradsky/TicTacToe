@@ -1,21 +1,24 @@
+import java.util.Collection;
 import java.util.Scanner;
 
 public class UI {
     private static Scanner scanner = new Scanner(System.in);
 
-    private static char[] chips = { 'x', 'o' };
+    private static char[] chips = { 'x', 'o', '#', '$' };
 
     public static void showMessage(String message) {
         System.out.println(message);
     }
 
-    public static void drawField(Field field) {
-        // ToDo: change for n size field
-        int[][] array = field.getField();
-        for (int i = 0; i < array.length; i++) {
-            for (int j = 0; j < array[0].length; j++) {
-                char chip = array[i][j] < 0 ? ' ' : chips[array[i][j]];
-                System.out.print("[" + chip + "]");
+    public static void drawField(Field field) throws NotImplementedException {
+        Collection<int[][]> array = field.getField();
+        for (int[][] d2Field : array) {
+            for (int i = 0; i < d2Field.length; i++) {
+                for (int j = 0; j < d2Field[0].length; j++) {
+                    char chip = d2Field[i][j] < 0 ? ' ' : chips[d2Field[i][j]];
+                    System.out.print("[" + chip + "]");
+                }
+                System.out.println();
             }
             System.out.println();
         }
