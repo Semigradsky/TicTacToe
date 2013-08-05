@@ -1,4 +1,12 @@
 
 public abstract class Player {
-    public abstract Move move(Field field);
+    protected int playerId;
+
+
+
+    public abstract Move move(Field field) throws NotImplementedException;
+
+    public int getPlayerId() {
+        return playerId;
+    }
 }

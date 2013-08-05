@@ -1,10 +1,9 @@
 import java.util.ArrayList;
-import java.util.Collection;
 
 public class Field {
 
-    int[][] d2Field;
-    int[][][] d3Field;
+    private int[][] d2Field;
+    private int[][][] d3Field;
 
     private int dimension;
 
@@ -45,8 +44,8 @@ public class Field {
         }
     }
 
-    public Collection<int[][]> getField() throws NotImplementedException {
-        Collection<int[][]> result = new ArrayList<int[][]>();
+    public ArrayList<int[][]> getField() throws NotImplementedException {
+        ArrayList<int[][]> result = new ArrayList<int[][]>();
         switch (dimension) {
             case 2:
                 result.add(d2Field);
@@ -83,5 +82,25 @@ public class Field {
             }
         }
         return false;
+    }
+
+    public boolean playerIsWin(Player player) {
+        int playerId = player.getPlayerId();
+        // ToDo: winned or no
+        return false;
+    }
+
+    public void writeMove(Move move, Player player) throws NotImplementedException {
+        int[] moveCoordinate = move.getMoveCoordinate();
+        switch (dimension) {
+            case 2:
+                d2Field[moveCoordinate[0]][moveCoordinate[1]] = player.getPlayerId();
+                break;
+            case 3:
+                d3Field[moveCoordinate[0]][moveCoordinate[1]][moveCoordinate[2]] = player.getPlayerId();
+                break;
+            default:
+                throw new NotImplementedException();
+        }
     }
 }

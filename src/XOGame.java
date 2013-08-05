@@ -1,20 +1,18 @@
-import java.util.ArrayList;
-import java.util.List;
 
 public class XOGame {
 
     public void startGame() throws NotImplementedException {
-        List<Move> movesHistory = new ArrayList<Move>();
+        MovesHistory movesHistory = new MovesHistory();
         Rules rules = Rules.askRules();
         Players players = new Players(rules.getCountHumans(), rules.getCountRobots());
         Field field = new Field(rules.getDimension(), rules.getFieldSize());
 
-        while (field.hasAvailableMoves()) {
+        while (field.hasAvailableMoves() || field.playerIsWin(players.currentPlayer())) {
             for (int moveNumber = 0; moveNumber < rules.getCountMoves(); moveNumber++) {
                 UI.drawField(field);
                 Move move = players.move(field);
                 movesHistory.add(move);
-                // ToDo: move
+                field.writeMove(move, players.currentPlayer());
             }
             players.nextPlayer();
         }

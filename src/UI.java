@@ -34,10 +34,16 @@ public class UI {
         return readNumber(minValue, maxValue);
     }
 
+    public static String readString(String text) {
+        showMessage(text);
+        return scanner.nextLine();
+    }
+
     public static int readNumber() {
         int number;
         try {
             number = Integer.parseInt(scanner.next());
+            scanner.nextLine();
         } catch (NumberFormatException ex) {
             showMessage("Please, enter number value.");
             return readNumber();
@@ -49,6 +55,7 @@ public class UI {
         int number;
         try {
             number = Integer.parseInt(scanner.next());
+            scanner.nextLine();
             if (number < minValue || number > maxValue) {
                 showMessage("Please, enter number in range: [" + minValue + "; " + maxValue + "]");
                 return readNumber(minValue, maxValue);
