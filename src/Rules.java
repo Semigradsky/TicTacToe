@@ -15,6 +15,11 @@ public class Rules {
         public static final int Max = 3;
     }
 
+    public static final class CountInRowForWin {
+        public static final int Min = 3;
+        public static final int Max = 5;
+    }
+
     public Rules() {
         fieldSize[0] = 3;
         fieldSize[1] = 3;
@@ -26,6 +31,7 @@ public class Rules {
     private int dimension = 2;
     private int[] fieldSize = new int[2];
     private int countMoves = 1;
+    private int countInRowForWin = 3;
 
     public int getCountHumans() { return  countHumans; }
     public int getCountRobots() { return  countRobots; }
@@ -33,6 +39,7 @@ public class Rules {
     public int getDimension() { return dimension; }
     public int[] getFieldSize() { return fieldSize; }
     public int getCountMoves() { return countMoves; }
+    public int getCountInRowForWin() { return countInRowForWin; }
 
     public static Rules askRules() {
         Rules rules = new Rules();
@@ -51,8 +58,8 @@ public class Rules {
                 rules.countRobots = 1;
                 break;
             case GameModes.NoStandardGame:
-                rules.countHumans = UI.readNumber("How many human players?", Rules.CountHumans.Min, Rules.CountHumans.Max);
-                rules.countRobots = UI.readNumber("How many robot players?", Rules.CountRobots.Min, Rules.CountRobots.Max);
+                rules.countHumans = UI.readNumber("How many human players?", CountHumans.Min, CountHumans.Max);
+                rules.countRobots = UI.readNumber("How many robot players?", CountRobots.Min, CountRobots.Max);
 
                 rules.dimension = UI.readNumber("What are the demensions of a space? (default = 2)", 2, 3);
                 rules.fieldSize = new int[rules.dimension];
@@ -60,7 +67,9 @@ public class Rules {
                     rules.fieldSize[i] = UI.readNumber("How many cells in " + (i + 1) + " dimension?", 1, 30);
                 }
 
-                rules.countMoves = UI.readNumber("How many moves? (default = 1)", Rules.CountMoves.Min, Rules.CountMoves.Max);
+                rules.countMoves = UI.readNumber("How many moves? (default = 1)", CountMoves.Min, CountMoves.Max);
+
+                rules.countInRowForWin = UI.readNumber("How many in row for win? (default = 3)", CountInRowForWin.Min, CountInRowForWin.Max);
                 break;
             default:
                 return askRules();

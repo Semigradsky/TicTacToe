@@ -5,7 +5,7 @@ public class XOGame {
         MovesHistory movesHistory = new MovesHistory();
         Rules rules = Rules.askRules();
         Players players = new Players(rules.getCountHumans(), rules.getCountRobots());
-        Field field = new Field(rules.getDimension(), rules.getFieldSize());
+        Field field = new Field(rules.getDimension(), rules.getFieldSize(), rules.getCountInRowForWin());
 
         while (field.hasAvailableMoves() || field.playerIsWin(players.currentPlayer())) {
             for (int moveNumber = 0; moveNumber < rules.getCountMoves(); moveNumber++) {

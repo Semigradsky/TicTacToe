@@ -6,9 +6,11 @@ public class Field {
     private int[][][] d3Field;
 
     private int dimension;
+    private int countInRowForWin;
 
-    public Field(int dimension, int[] fieldSize) throws NotImplementedException {
+    public Field(int dimension, int[] fieldSize, int countInRowForWin) throws NotImplementedException {
         this.dimension = dimension;
+        this.countInRowForWin = countInRowForWin;
         switch (dimension) {
             case 2:
                 d2Field = new int[fieldSize[0]][fieldSize[1]];
@@ -84,10 +86,21 @@ public class Field {
         return false;
     }
 
-    public boolean playerIsWin(Player player) {
+    public boolean playerIsWin(Player player) throws NotImplementedException {
         int playerId = player.getPlayerId();
-        // ToDo: winned or no
-        return false;
+
+        // countInRowForWin
+
+        switch (dimension) {
+            case 2:
+
+                return false;
+            case 3:
+                // ToDo: implement
+                return false;
+            default:
+                throw new NotImplementedException();
+        }
     }
 
     public void writeMove(Move move, Player player) throws NotImplementedException {
